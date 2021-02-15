@@ -1,8 +1,8 @@
 # Use something easier to type as the prefix.
 set -g prefix C-f
-unbind C-b
-bind C-f send-prefix
-unbind C-s
+unbind-key C-b
+bind-key C-f send-prefix
+unbind-key C-s
 
 # Relax!
 set -sg escape-time 0
@@ -21,7 +21,7 @@ setw -g xterm-keys on
 
 # This is hilariously absurd.  How many nerds use tmux on OS X every day and
 # it's still fundamentally broken?
-set -g default-command "reattach-to-user-namespace -l zsh"
+# set -g default-command "reattach-to-user-namespace -l zsh"
 
 # Less stretching to get to the first item.
 set -g base-index 1
@@ -109,13 +109,12 @@ bind ` copy-mode
 unbind [
 unbind p
 bind p paste-buffer
-bind -t vi-copy v begin-selection
-bind -t vi-copy y copy-selection
-bind -t vi-copy Escape cancel
+bind-key -T copy-mode-vi v begin-selection
+bind-key -T copy-mode-vi y copy-selection
+bind-key -T copy-mode-vi Escape cancel
 bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 
 # Window movement
 bind \; last-window
 bind -r ] next-window
 bind -r [ previous-window
-
